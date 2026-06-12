@@ -173,14 +173,14 @@ jobs:
           ECR_URI: ${{ secrets.ECR_FRONTEND_URI }}
           TAG: ${{ needs.build-image.outputs.image-tag }}
         run: |
-          docker tag ${{ env.IMAGE_NAME }}:${TAG} 396982710430.dkr.ecr.us-east-2.amazonaws.com/loanhub-frontend:latest
-          #docker tag ${{ env.IMAGE_NAME }}:${TAG} ${ECR_URI}:latest
-          #docker push ${ECR_URI}:${TAG}
-          docker push 396982710430.dkr.ecr.us-east-2.amazonaws.com/loanhub-frontend:latest
+          docker tag ${{ env.IMAGE_NAME }}:${TAG} ${ECR_URI}:${TAG}
+          docker tag ${{ env.IMAGE_NAME }}:${TAG} ${ECR_URI}:latest
+          docker push ${ECR_URI}:${TAG}
+          docker push ${ECR_URI}:latest
 
       - uses: actions/checkout@v4
         with:
-          repository: raj-pro/loanhub-gitops
+          repository: vilasvarghese/loanhub-gitops
           token: ${{ secrets.GITOPS_TOKEN }}
           path: gitops
 
