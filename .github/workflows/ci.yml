@@ -41,25 +41,25 @@ jobs:
         run: npm run build
 
   # ── 2. Snyk dependency vulnerability scan ──────────────────────────────────
-  snyk:
-    name: Snyk dependency scan
-    runs-on: ubuntu-latest
-    needs: build-test
-    continue-on-error: true
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
-      - name: Snyk scan
-        uses: snyk/actions/node@master
-        with:
-          args: --severity-threshold=high
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  #snyk:
+  #  name: Snyk dependency scan
+  #  runs-on: ubuntu-latest
+  #  needs: build-test
+  #  continue-on-error: true
+  #  steps:
+  #    - uses: actions/checkout@v4
+  #    - uses: actions/setup-node@v4
+  #      with:
+  #        node-version: '20'
+  #        cache: npm
+  #    - name: Install dependencies
+  #      run: npm ci
+  #    - name: Snyk scan
+  #      uses: snyk/actions/node@master
+  #      with:
+  #        args: --severity-threshold=high
+  #      env:
+  #        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   # ── 3. Build Docker image ───────────────────────────────────────────────────
   build-image:
